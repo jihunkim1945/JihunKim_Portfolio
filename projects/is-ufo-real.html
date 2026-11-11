@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IS U.F.O REAL? — Jihun Kim</title>
+<meta name="description" content="Created a type specimen booklet based on the typeface “ADC Favourit.” The font’ s irregular and unconventional forms reminded of UFO imagery and class">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site-header">
+  <a href="../index.html">Jihun Kim</a>
+  <nav><a href="../index.html#work">Work</a><a href="../info.html">Info</a><a href="#contact">Contact</a></nav>
+</header>
+<section class="detail-head">
+  <h1>IS U.F.O REAL?<br><span class="view">Booklet Design<br>2025</span></h1>
+  <div class="desc"><p>Created a type specimen booklet based on the typeface “ADC Favourit.” The font’s irregular and unconventional forms reminded of UFO imagery and classified documents, designed the booklet inspired by confidential UFO files and censorship marks.</p></div>
+</section>
+<div class="lead"><video src="../images/is-ufo-real/book-video.mp4" muted loop playsinline autoplay preload="auto"></video></div>
+<main class="slices">
+  <img src="../images/is-ufo-real/detail-01.jpg" width="2880" height="2200" alt="" decoding="async">
+  <img src="../images/is-ufo-real/detail-02.jpg" width="2880" height="2200" alt="" decoding="async">
+  <img src="../images/is-ufo-real/detail-03.jpg" width="2880" height="2200" alt="" loading="lazy" decoding="async">
+  <img src="../images/is-ufo-real/detail-04.jpg" width="2880" height="238" alt="" loading="lazy" decoding="async">
+</main>
+<nav class="pager">
+  <a href="do-you-exist.html">← Do You Exist?</a>
+  <a href="../index.html">Index</a>
+  <a href="samwoojung.html">SamWooJung Rebranding →</a>
+</nav>
+<script>
+/* play overlay videos only while they're on screen */
+const vids = [...document.querySelectorAll('.overlay video, .lead video, .gvideo video')];
+const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause()), { threshold: 0.25 });
+vids.forEach(v => io.observe(v));
+/* browsers only allow sound after a click, so each video gets a toggle;
+   turning one on mutes the others */
+document.querySelectorAll('.overlay .sound, .gvideo .sound').forEach(btn => btn.addEventListener('click', () => {
+  const v = btn.parentNode.querySelector('video'), on = v.muted;
+  vids.forEach(o => { o.muted = true; });
+  document.querySelectorAll('.overlay .sound, .gvideo .sound').forEach(b => { b.textContent = '[sound on]'; b.setAttribute('aria-pressed', 'false'); });
+  if (on) { v.muted = false; v.play().catch(() => {}); btn.textContent = '[sound off]'; btn.setAttribute('aria-pressed', 'true'); }
+}));
+</script>
+<footer class="footer" id="contact">
+  <span class="links"><a href="mailto:kimmic0218@gmail.com">kimmic0218@gmail.com</a>
+      <a href="https://www.linkedin.com/in/jihun-kim-4a79a1389" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="../info.html">Info</a></span>
+  <small>© 2026 Jihun Kim</small>
+</footer>
+</body>
+</html>

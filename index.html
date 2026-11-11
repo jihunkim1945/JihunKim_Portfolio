@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jihun Kim — Portfolio</title>
+<meta name="description" content="Jihun Kim — typography-focused communication designer">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="home-link" href="index.html">Jihun Kim</a>
+<section class="hero"><p class="intro">I&#x27;m Jihun Kim, a typography-focused communication designer exploring narrative, interaction, and editorial systems. My work translates personal and cultural experiences into structured visual forms, often through nonlinear storytelling and experimental layouts. Currently studying BFA Communication Design at Parsons School of Design, New York.</p>
+  <div class="hero-info">
+    <span class="links"><a href="mailto:kimmic0218@gmail.com">kimmic0218@gmail.com</a>
+      <a href="https://www.linkedin.com/in/jihun-kim-4a79a1389" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="info.html">Info</a></span>
+    <a class="scroll-cue" href="#work">Selected Work ↓</a>
+  </div>
+</section>
+<main class="projects panel" id="work">
+  <div class="grid-bg" aria-hidden="true">
+    <div class="slot"><img alt=""><video muted loop playsinline preload="auto" hidden></video></div>
+    <div class="slot"><img alt=""><video muted loop playsinline preload="auto" hidden></video></div>
+  </div>
+  <div class="list">
+  <h2 class="panel-title">Selected Work</h2>
+  <article class="project" data-grid="images/samwoojung/grid-1.jpg images/samwoojung/grid-2.jpg">
+    <h2><a href="projects/samwoojung.html">SamWooJung Rebranding</a></h2>
+    <div class="meta">
+      <p class="tags">Branding<br>2026</p>
+      <p>A rebranding project for SamWooJung, a Seoul-style bulgogi restaurant established in 1963.<br><a class="view" href="projects/samwoojung.html">[more]</a></p>
+    </div>
+  </article>
+  <article class="project" data-grid="images/traces-of-time/hover-1.mp4 images/traces-of-time/hover-2.mp4">
+    <h2><a href="projects/traces-of-time.html">Traces of Time</a></h2>
+    <div class="meta">
+      <p class="tags">Editorial &amp; Interactive<br>2026</p>
+      <p>An editorial and interactive project exploring aging, decay, and rebirth as continuous stages of transformation.<br><a class="view" href="projects/traces-of-time.html">[more]</a></p>
+    </div>
+  </article>
+  <article class="project" data-grid="images/ttwieo/hover-run.mp4 images/ttwieo/hover-course.mp4" data-tall>
+    <h2><a href="projects/ttwieo.html">TTWIEO!</a></h2>
+    <div class="meta">
+      <p class="tags">UI/UX Design<br>2026</p>
+      <p>A running app designed for beginner runners in NYC.<br><a class="view" href="projects/ttwieo.html">[more]</a></p>
+    </div>
+  </article>
+  <article class="project" data-grid="images/selfiside/grid-1.jpg images/selfiside/grid-2.jpg">
+    <h2><a href="projects/selfiside.html">Selfiside</a></h2>
+    <div class="meta">
+      <p class="tags">Book Design<br>2025</p>
+      <p>This book is inspired by the film Fight Club. It explores the film’s philosophical ideas.<br><a class="view" href="projects/selfiside.html">[more]</a></p>
+    </div>
+  </article>
+  <article class="project" data-grid="images/eidolon/grid-1.jpg images/eidolon/grid-2.jpg">
+    <h2><a href="projects/eidolon.html">EIDOLON</a></h2>
+    <div class="meta">
+      <p class="tags">Branding<br>2026</p>
+      <p>A world-building and branding project exploring how identity, communication, and perception might evolve in a post-technological future.<br><a class="view" href="projects/eidolon.html">[more]</a></p>
+    </div>
+  </article>
+  <article class="project" data-grid="images/lucid-dream/hover-1.mp4 images/lucid-dream/hover-2.mp4">
+    <h2><a href="projects/lucid-dream.html">Lucid Dream</a></h2>
+    <div class="meta">
+      <p class="tags">Web Design<br>2026</p>
+      <p>A nonlinear website where the user feels trapped inside a dream and gradually tries to escape.<br><a class="view" href="projects/lucid-dream.html">[more]</a></p>
+    </div>
+  </article>
+  <article class="project" data-grid="images/the-stranger/grid-1.jpg images/the-stranger/grid-2.jpg">
+    <h2><a href="projects/the-stranger.html">The Stranger VOL. 2:<br>The Shape of her Sacrifice</a></h2>
+    <div class="meta">
+      <p class="tags">Book Design<br>2026</p>
+      <p>An interview book about my mom’s story as an immigrant.<br><a class="view" href="projects/the-stranger.html">[more]</a></p>
+    </div>
+  </article>
+  <article class="project" data-grid="images/do-you-exist/detail-video.mp4 images/do-you-exist/detail-video-2.mp4">
+    <h2><a href="projects/do-you-exist.html">Do You Exist?</a></h2>
+    <div class="meta">
+      <p class="tags">Web Design<br>2026</p>
+      <p>A website that questions the user’s sense of existence through the use of input elements.<br><a class="view" href="projects/do-you-exist.html">[more]</a></p>
+    </div>
+  </article>
+  <article class="project" data-grid="images/is-ufo-real/grid-1.jpg images/is-ufo-real/grid-2.jpg">
+    <h2><a href="projects/is-ufo-real.html">IS U.F.O REAL?</a></h2>
+    <div class="meta">
+      <p class="tags">Booklet Design<br>2025</p>
+      <p>Designed the booklet inspired by confidential UFO files and censorship marks.<br><a class="view" href="projects/is-ufo-real.html">[more]</a></p>
+    </div>
+  </article>
+  </div>
+</main>
+<script>
+(() => {
+  /* hover a project: its first two images fill the screen as a 2-column
+     grid behind the list; the text stays on top and inverts against it */
+  if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  const bg = document.querySelector('.grid-bg');
+  const slots = [...bg.querySelectorAll('.slot')];
+  const isVid = src => src.endsWith('.mp4');
+  /* each slot shows either an image or a looping, muted video */
+  const fill = (slot, src) => {
+    const img = slot.querySelector('img'), vid = slot.querySelector('video');
+    if (!src) { vid.pause(); vid.hidden = true; img.hidden = true; return; }
+    if (isVid(src)) {
+      img.hidden = true; vid.hidden = false;
+      if (!vid.src.endsWith(src)) vid.src = src;
+      vid.currentTime = 0; vid.play().catch(() => {});
+    } else {
+      vid.pause(); vid.hidden = true; img.hidden = false; img.src = src;
+    }
+  };
+  /* video pairs sit side by side at one shared height: as tall as the
+     space allows (40% of the screen, 58% for phone videos) while both fit */
+  const GAP = 12;
+  const layout = () => {
+    if (!bg.classList.contains('fit')) { bg.style.height = ''; return; }
+    const els = slots.map(sl => [...sl.children].find(x => !x.hidden)).filter(Boolean);
+    const ar = x => x.tagName === 'VIDEO' ? (x.videoWidth ? x.videoWidth / x.videoHeight : 16 / 9)
+                                          : (x.naturalWidth ? x.naturalWidth / x.naturalHeight : 1.5);
+    const maxH = innerHeight * (bg.classList.contains('tall') ? 0.58 : 0.4);
+    const sum = els.reduce((t, x) => t + ar(x), 0) || 1;
+    bg.style.height = Math.min(maxH, (innerWidth - GAP * (els.length - 1)) / sum) + 'px';
+  };
+  slots.forEach(sl => { sl.querySelector('video').addEventListener('loadedmetadata', layout);
+                         sl.querySelector('img').addEventListener('load', layout); });
+  addEventListener('resize', layout);
+  const list = document.querySelector('.list');
+  const rows = list.querySelectorAll('.project[data-grid]');
+  rows.forEach(r => r.dataset.grid.split(' ').forEach(src => { if (!isVid(src)) new Image().src = src; }));
+  rows.forEach(r => r.addEventListener('mouseenter', () => {
+    if (!document.documentElement.classList.contains('locked')) return;
+    const [s1, s2] = r.dataset.grid.split(' ');
+    fill(slots[0], s1); fill(slots[1], s2);
+    rows.forEach(x => x.classList.toggle('active', x === r));
+    bg.classList.toggle('tall', 'tall' in r.dataset);
+    bg.classList.toggle('fit', r.dataset.grid.split(' ').some(isVid));
+    layout();
+    bg.classList.add('on');
+  }));
+  /* leaving a project (even into the gap between rows) hides the images */
+  const hide = () => {
+    bg.classList.remove('on');
+    bg.querySelectorAll('video').forEach(v => v.pause());
+    rows.forEach(x => x.classList.remove('active'));
+  };
+  rows.forEach(r => r.addEventListener('mouseleave', hide));
+  list.addEventListener('mouseleave', hide);
+})();
+</script>
+<script>
+(() => {
+  const hero = document.querySelector('.hero');
+  const panel = document.querySelector('.panel');
+  if (!hero || !panel) return;
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let ticking = false, locked = false;
+  /* once the work panel reaches the top, remove the intro so the page
+     can't scroll back to it (until the page is reloaded) */
+  const lock = () => {
+    locked = true;
+    const h = hero.offsetHeight;
+    hero.style.display = 'none';
+    document.documentElement.classList.add('locked');
+    scrollTo(0, Math.max(0, scrollY - h));
+  };
+  const check = () => {
+    if (!locked && panel.getBoundingClientRect().top <= 0.5) lock();
+  };
+  const update = () => {
+    ticking = false;
+    if (locked || calm) return;
+    const p = Math.min(Math.max(scrollY / innerHeight, 0), 1);
+    hero.style.opacity = 1 - p * 0.75;
+    hero.style.transform = `scale(${1 - p * 0.05})`;
+  };
+  /* "Jihun Kim" (top right on the work list) brings the intro back;
+     scrolling down past it locks again as before */
+  document.querySelector('.home-link').addEventListener('click', ev => {
+    ev.preventDefault();
+    locked = false;
+    document.documentElement.classList.remove('locked');
+    document.querySelector('.grid-bg').classList.remove('on');
+    hero.style.display = '';
+    scrollTo(0, 0);
+    update();
+  });
+  addEventListener('scroll', () => {
+    check();
+    if (!ticking && !locked) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  addEventListener('load', check);
+  check(); update();
+})();
+</script>
+<footer class="footer" id="contact">
+  <span class="links"><a href="mailto:kimmic0218@gmail.com">kimmic0218@gmail.com</a>
+      <a href="https://www.linkedin.com/in/jihun-kim-4a79a1389" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="info.html">Info</a></span>
+  <small>© 2026 Jihun Kim</small>
+</footer>
+</body>
+</html>

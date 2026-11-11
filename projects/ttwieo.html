@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TTWIEO! — Jihun Kim</title>
+<meta name="description" content="As a runner in New York, I noticed that many beginners feel intimidated by running and that existing apps often prioritize experienced users. This ins">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site-header">
+  <a href="../index.html">Jihun Kim</a>
+  <nav><a href="../index.html#work">Work</a><a href="../info.html">Info</a><a href="#contact">Contact</a></nav>
+</header>
+<section class="detail-head">
+  <h1>TTWIEO!<br><span class="view">UI/UX Design<br>2026</span></h1>
+  <div class="desc"><p>As a runner in New York, I noticed that many beginners feel intimidated by running and that existing apps often prioritize experienced users. This inspired me to create a beginner-focused UI/UX design for a running app that helps users track progress, set realistic goals, and stay motivated through a clear and accessible interface. The project emphasizes user flow, usability, and practical information based on my own running experience.</p></div>
+</section>
+<main class="slices">
+  <img src="../images/ttwieo/detail-01.jpg" width="2880" height="2200" alt="" decoding="async">
+  <img src="../images/ttwieo/detail-02.jpg" width="2880" height="2200" alt="" decoding="async">
+  <img src="../images/ttwieo/detail-03.jpg" width="2880" height="2200" alt="" loading="lazy" decoding="async">
+  <img src="../images/ttwieo/detail-04.jpg" width="2880" height="1488" alt="" loading="lazy" decoding="async">
+  <div class="overlay" style="left:48.1250%;width:53.0556%;top:35.2868%;height:39.1444%"><video src="../images/ttwieo/video-map.mp4" muted loop playsinline preload="metadata"></video></div>
+  <div class="overlay" style="left:51.9444%;width:23.2639%;top:3.0168%;height:17.1612%"><video src="../images/ttwieo/video-login.mp4" muted loop playsinline preload="metadata"></video></div>
+  <div class="overlay" style="left:5.6944%;width:20.4861%;top:56.0831%;height:15.1088%"><video src="../images/ttwieo/video-buddy.mp4" muted loop playsinline preload="metadata"></video></div>
+  <div class="overlay" style="left:2.0833%;width:27.2222%;top:71.7606%;height:20.0544%"><video src="../images/ttwieo/video-beginner.mp4" muted loop playsinline preload="metadata"></video></div>
+</main>
+<nav class="pager">
+  <a href="traces-of-time.html">← Traces of Time</a>
+  <a href="../index.html">Index</a>
+  <a href="selfiside.html">Selfiside →</a>
+</nav>
+<script>
+/* play overlay videos only while they're on screen */
+const vids = [...document.querySelectorAll('.overlay video, .lead video, .gvideo video')];
+const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause()), { threshold: 0.25 });
+vids.forEach(v => io.observe(v));
+/* browsers only allow sound after a click, so each video gets a toggle;
+   turning one on mutes the others */
+document.querySelectorAll('.overlay .sound, .gvideo .sound').forEach(btn => btn.addEventListener('click', () => {
+  const v = btn.parentNode.querySelector('video'), on = v.muted;
+  vids.forEach(o => { o.muted = true; });
+  document.querySelectorAll('.overlay .sound, .gvideo .sound').forEach(b => { b.textContent = '[sound on]'; b.setAttribute('aria-pressed', 'false'); });
+  if (on) { v.muted = false; v.play().catch(() => {}); btn.textContent = '[sound off]'; btn.setAttribute('aria-pressed', 'true'); }
+}));
+</script>
+<footer class="footer" id="contact">
+  <span class="links"><a href="mailto:kimmic0218@gmail.com">kimmic0218@gmail.com</a>
+      <a href="https://www.linkedin.com/in/jihun-kim-4a79a1389" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="../info.html">Info</a></span>
+  <small>© 2026 Jihun Kim</small>
+</footer>
+</body>
+</html>

@@ -1,0 +1,226 @@
+/* ===== Jihun Kim Portfolio ===== */
+:root {
+  --bg: #000;
+  --fg: #fff;
+  --muted: #8c8c8c;
+  --line: #222;
+  --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --gutter: 32px;
+  --col1: 22%;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: var(--bg); overflow-anchor: none; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.3;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ----- header ----- */
+/* transparent fixed bar: only the text stays, and it inverts against
+   whatever is underneath (white on dark, black on light) */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 14px var(--gutter);
+  background: transparent;
+  color: #fff;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+.site-header a { pointer-events: auto; transition: opacity .15s; }
+.site-header a:hover { opacity: .55; }
+.site-header + .detail-head { padding-top: 72px; }
+.site-header nav { display: flex; gap: 24px; }
+.view:hover, .footer a:hover { color: var(--muted); }
+
+/* work list: "Jihun Kim" top right goes back to the intro (shown once the intro is gone) */
+.home-link {
+  position: fixed; top: 14px; right: var(--gutter); z-index: 10;
+  color: #fff; mix-blend-mode: difference;
+  opacity: 0; pointer-events: none; transition: opacity .3s ease;
+}
+.locked .home-link { opacity: 1; pointer-events: auto; }
+.home-link:hover { opacity: .55; }
+
+/* ----- intro ----- */
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 10px 12px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  /* rising panel: hero stays put, work panel slides over it */
+  position: sticky; top: 0; z-index: 0;
+  height: 100vh; height: 100svh;
+  transform-origin: 50% 0;
+  will-change: opacity, transform;
+}
+.hero-info {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  font-size: 14px;
+}
+.links { display: flex; flex-wrap: wrap; gap: 4px 28px; }
+.links a:hover, .scroll-cue:hover { color: var(--muted); }
+.scroll-cue { white-space: nowrap; }
+
+.panel {
+  position: relative; z-index: 1;
+  background: var(--bg);
+  border-top: 1px solid #2a2a2a;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -24px 60px rgba(0, 0, 0, .6);
+  padding-top: 24px;
+}
+.locked .panel { border-radius: 0; border-top-color: transparent; box-shadow: none; }
+.panel-title {
+  font-size: 14px; font-weight: 400; color: var(--muted);
+  padding: 0 var(--gutter);
+  margin-bottom: clamp(64px, 10vh, 120px);
+}
+.intro {
+  max-width: 830px;
+  font-size: clamp(16px, 1.27vw, 22px);
+  font-weight: 500;
+  line-height: 1.32;
+  letter-spacing: -0.005em;
+}
+
+/* ----- project list ----- */
+.projects { margin-top: 0; }
+.project {
+  display: grid;
+  /* title on the left, description pushed to the right edge */
+  grid-template-columns: minmax(0, 1fr) min(500px, 46%);
+  gap: 32px;
+  position: relative;
+  padding: 0 var(--gutter);
+  margin-bottom: clamp(160px, 26vh, 300px);
+}
+.project h2 { font-size: inherit; font-weight: 400; padding-right: 16px; }
+/* whole row is clickable */
+.project h2 a::after { content: ""; position: absolute; inset: -12px 0; }
+/* small description */
+/* design type / year on the left, description right beside it */
+.project .meta {
+  display: grid; grid-template-columns: 104px minmax(0, 1fr); column-gap: 16px;
+  font-size: 12px; line-height: 1.4;
+}
+.view { color: var(--muted); }
+.project:hover .view { color: var(--fg); }
+
+/* hover: 2-column full-screen images behind the list */
+.grid-bg {
+  /* bottom ~40% of the screen, two columns */
+  position: fixed; left: 0; right: 0; bottom: 0; height: 40vh; z-index: 0;
+  display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: minmax(0, 1fr);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+.grid-bg.on { opacity: 1; }
+/* original proportions, no cropping; sit on the bottom-left of each column */
+.grid-bg .slot { min-width: 0; min-height: 0; }
+.grid-bg img, .grid-bg video { width: 100%; height: 100%; object-fit: contain; object-position: left bottom; display: block; }
+.grid-bg [hidden] { display: none; }
+/* phone videos: taller, and sitting right next to each other */
+/* videos: side by side at one shared height (set from JS so both fit the width) */
+.grid-bg.fit { display: flex; gap: 12px; }
+.grid-bg.fit .slot { height: 100%; }
+.grid-bg.fit img, .grid-bg.fit video { width: auto; height: 100%; }
+/* the text sits on top and inverts against the images */
+.list {
+  position: relative; z-index: 1;
+  color: #fff;
+  mix-blend-mode: difference;
+}
+.list .project { transition: opacity .3s ease; }
+.list:has(.active) .project:not(.active) { opacity: .5; }
+
+/* ----- detail page ----- */
+.detail-head {
+  display: grid;
+  /* description sits right next to the title */
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: 48px;
+  padding: 24px var(--gutter) 40px;
+}
+.detail-head h1 { font-size: inherit; font-weight: 400; }
+.detail-head .desc { max-width: 760px; }
+.detail-head .desc p + p { margin-top: 1em; }
+.slices img { width: 100%; height: auto; }
+.slices { position: relative; overflow: hidden; }
+.slices .overlay { position: absolute; }
+.lead video { width: 100%; height: auto; display: block; }
+.lead.inset { padding: 24px var(--gutter) 48px; }
+.lead.inset video { width: min(1040px, 72%); margin: 0 auto; }
+.slices .overlay video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery .gvideo { position: relative; }
+.overlay .sound, .gvideo .sound {
+  position: absolute; right: 16px; bottom: 14px;
+  background: none; border: 0; cursor: pointer;
+  font: inherit; font-size: 13px; color: #fff; mix-blend-mode: difference;
+}
+.overlay .sound:hover, .gvideo .sound:hover { opacity: .55; }
+
+.pager {
+  display: flex; justify-content: space-between; gap: 16px;
+  padding: 80px var(--gutter) 0;
+}
+.pager a:hover { color: var(--muted); }
+
+/* hand-laid gallery pages: spreads two per row, some full width */
+.gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 var(--gutter); }
+.gallery img, .gallery video { width: 100%; height: auto; display: block; }
+.gallery .full { grid-column: 1 / -1; }
+.gallery .label { grid-column: 1 / -1; font-size: 14px; color: var(--muted); padding: 96px 0 8px; }
+.gallery .label:first-child { padding-top: 40px; }
+.gallery .covers { grid-column: 1 / -1; display: flex; justify-content: center; gap: 12px; }
+.gallery .covers img { width: min(34%, 460px); }
+@media (max-width: 720px) { .gallery { grid-template-columns: minmax(0, 1fr); gap: 8px; } .gallery .covers img { width: 48%; } }
+
+/* ----- info page ----- */
+/* text column keeps its width but sits against the right edge */
+.info-head { grid-template-columns: minmax(0, 1fr) min(760px, 60%); }
+.info-head .desc { max-width: none; }
+.info { padding: 40px var(--gutter) 0; }
+.info-row {
+  display: grid; grid-template-columns: minmax(0, 1fr) min(760px, 60%); column-gap: 48px;
+  padding: 20px 0; border-top: 1px solid var(--line);
+}
+.info-row h2 { font-size: inherit; font-weight: 400; color: var(--muted); }
+.info-row p + p { margin-top: 1.2em; }
+.info-row a:hover { color: var(--muted); }
+@media (max-width: 720px) { .info-row, .info-head { grid-template-columns: minmax(0, 1fr); row-gap: 8px; } }
+
+/* ----- footer ----- */
+.footer {
+  /* transparent: only the text, inverting against what's behind it */
+  position: relative; z-index: 2;
+  background: transparent;
+  color: #fff;
+  mix-blend-mode: difference;
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  padding: 120px var(--gutter) 24px;
+  font-size: 14px;
+}
+.footer small { color: var(--muted); font-size: 13px; }
+
+/* ----- mobile ----- */
+@media (max-width: 720px) {
+  :root { --gutter: 16px; }
+  .project, .detail-head, .footer { grid-template-columns: minmax(0, 1fr); }
+  .project h2, .detail-head h1 { margin-bottom: 8px; }
+  .hero { padding: 10px var(--gutter) 20px; }
+  .hero-info { flex-direction: column; align-items: flex-start; }
+  .hero-info, .footer { gap: 12px; }
+  .footer { flex-direction: column; }
+  .links { gap: 4px 20px; }
+  .panel { border-radius: 14px 14px 0 0; }
+  .project { margin-bottom: 130px; gap: 4px; }
+}

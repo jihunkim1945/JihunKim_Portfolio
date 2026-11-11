@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lucid Dream — Jihun Kim</title>
+<meta name="description" content="Inspired by the nonlinear nature of dreams, this website allows users to explore a story through a nonlinear structure. I designed it as an interactiv">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site-header">
+  <a href="../index.html">Jihun Kim</a>
+  <nav><a href="../index.html#work">Work</a><a href="../info.html">Info</a><a href="#contact">Contact</a></nav>
+</header>
+<section class="detail-head">
+  <h1>Lucid Dream<br><span class="view">Web Design<br>2026</span></h1>
+  <div class="desc"><p>Inspired by the nonlinear nature of dreams, this website allows users to explore a story through a nonlinear structure. I designed it as an interactive experience where the user feels trapped inside a dream and gradually tries to escape from it.</p><p><a class="view" href="https://jihunkim1945.github.io/jihunkim1945.github.io-core-interaction_project1/index.html" target="_blank" rel="noopener">[visit website ↗]</a></p></div>
+</section>
+<main class="slices">
+  <img src="../images/lucid-dream/detail-01.jpg" width="2880" height="2200" alt="" decoding="async">
+  <img src="../images/lucid-dream/detail-02.jpg" width="2880" height="2200" alt="" decoding="async">
+  <img src="../images/lucid-dream/detail-03.jpg" width="2880" height="2200" alt="" loading="lazy" decoding="async">
+  <img src="../images/lucid-dream/detail-04.jpg" width="2880" height="2034" alt="" loading="lazy" decoding="async">
+  <div class="overlay" style="left:0.9028%;width:98.7500%;top:1.6215%;height:18.5546%"><video src="../images/lucid-dream/detail-video.mp4" muted loop playsinline preload="metadata"></video></div>
+  <div class="overlay" style="left:0.4861%;width:99.5139%;top:40.0741%;height:18.6704%"><video src="../images/lucid-dream/detail-video-2.mp4" muted loop playsinline preload="metadata"></video><button class="sound" type="button" aria-pressed="false">[sound on]</button></div>
+  <div class="overlay" style="left:0.0000%;width:100.0000%;top:59.8332%;height:18.7630%"><video src="../images/lucid-dream/detail-video-3.mp4" muted loop playsinline preload="metadata"></video><button class="sound" type="button" aria-pressed="false">[sound on]</button></div>
+  <div class="overlay" style="left:0.2083%;width:100.0000%;top:79.6850%;height:18.7630%"><video src="../images/lucid-dream/detail-video-4.mp4" muted loop playsinline preload="metadata"></video><button class="sound" type="button" aria-pressed="false">[sound on]</button></div>
+</main>
+<nav class="pager">
+  <a href="eidolon.html">← EIDOLON</a>
+  <a href="../index.html">Index</a>
+  <a href="the-stranger.html">The Stranger VOL. 2: The Shape of her Sacrifice →</a>
+</nav>
+<script>
+/* play overlay videos only while they're on screen */
+const vids = [...document.querySelectorAll('.overlay video, .lead video, .gvideo video')];
+const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause()), { threshold: 0.25 });
+vids.forEach(v => io.observe(v));
+/* browsers only allow sound after a click, so each video gets a toggle;
+   turning one on mutes the others */
+document.querySelectorAll('.overlay .sound, .gvideo .sound').forEach(btn => btn.addEventListener('click', () => {
+  const v = btn.parentNode.querySelector('video'), on = v.muted;
+  vids.forEach(o => { o.muted = true; });
+  document.querySelectorAll('.overlay .sound, .gvideo .sound').forEach(b => { b.textContent = '[sound on]'; b.setAttribute('aria-pressed', 'false'); });
+  if (on) { v.muted = false; v.play().catch(() => {}); btn.textContent = '[sound off]'; btn.setAttribute('aria-pressed', 'true'); }
+}));
+</script>
+<footer class="footer" id="contact">
+  <span class="links"><a href="mailto:kimmic0218@gmail.com">kimmic0218@gmail.com</a>
+      <a href="https://www.linkedin.com/in/jihun-kim-4a79a1389" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="../info.html">Info</a></span>
+  <small>© 2026 Jihun Kim</small>
+</footer>
+</body>
+</html>

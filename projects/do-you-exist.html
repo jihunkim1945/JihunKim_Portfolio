@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Do You Exist? — Jihun Kim</title>
+<meta name="description" content="This interactive website is inspired by the film The Matrix. It uses the HTML input element, which gives users the feeling that they are actively ente">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site-header">
+  <a href="../index.html">Jihun Kim</a>
+  <nav><a href="../index.html#work">Work</a><a href="../info.html">Info</a><a href="#contact">Contact</a></nav>
+</header>
+<section class="detail-head">
+  <h1>Do You Exist?<br><span class="view">Web Design<br>2026</span></h1>
+  <div class="desc"><p>This interactive website is inspired by the film The Matrix. It uses the HTML input element, which gives users the feeling that they are actively entering information and making their own choices in reality. However, the project reveals that within a larger system, the user may only exist as data.</p><p><a class="view" href="https://jihunkim1945.github.io/interaction_project2/" target="_blank" rel="noopener">[visit website ↗]</a></p></div>
+</section>
+<main class="slices">
+  <img src="../images/do-you-exist/detail-01.jpg" width="2880" height="2200" alt="" decoding="async">
+  <img src="../images/do-you-exist/detail-02.jpg" width="2880" height="2200" alt="" decoding="async">
+  <img src="../images/do-you-exist/detail-03.jpg" width="2880" height="2200" alt="" loading="lazy" decoding="async">
+  <img src="../images/do-you-exist/detail-04.jpg" width="2880" height="2200" alt="" loading="lazy" decoding="async">
+  <img src="../images/do-you-exist/detail-05.jpg" width="2880" height="2200" alt="" loading="lazy" decoding="async">
+  <img src="../images/do-you-exist/detail-06.jpg" width="2880" height="670" alt="" loading="lazy" decoding="async">
+  <div class="overlay" style="left:0.0000%;width:100.0000%;top:14.9957%;height:13.9160%"><video src="../images/do-you-exist/detail-video-0.mp4" muted loop playsinline preload="metadata"></video></div>
+  <div class="overlay" style="left:0.0000%;width:100.0000%;top:29.4430%;height:13.8817%"><video src="../images/do-you-exist/detail-video.mp4" muted loop playsinline preload="metadata"></video><button class="sound" type="button" aria-pressed="false">[sound on]</button></div>
+  <div class="overlay" style="left:-2.8472%;width:100.0000%;top:58.3033%;height:13.8817%"><video src="../images/do-you-exist/detail-video-2.mp4" muted loop playsinline preload="metadata"></video></div>
+</main>
+<nav class="pager">
+  <a href="the-stranger.html">← The Stranger VOL. 2: The Shape of her Sacrifice</a>
+  <a href="../index.html">Index</a>
+  <a href="is-ufo-real.html">IS U.F.O REAL? →</a>
+</nav>
+<script>
+/* play overlay videos only while they're on screen */
+const vids = [...document.querySelectorAll('.overlay video, .lead video, .gvideo video')];
+const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause()), { threshold: 0.25 });
+vids.forEach(v => io.observe(v));
+/* browsers only allow sound after a click, so each video gets a toggle;
+   turning one on mutes the others */
+document.querySelectorAll('.overlay .sound, .gvideo .sound').forEach(btn => btn.addEventListener('click', () => {
+  const v = btn.parentNode.querySelector('video'), on = v.muted;
+  vids.forEach(o => { o.muted = true; });
+  document.querySelectorAll('.overlay .sound, .gvideo .sound').forEach(b => { b.textContent = '[sound on]'; b.setAttribute('aria-pressed', 'false'); });
+  if (on) { v.muted = false; v.play().catch(() => {}); btn.textContent = '[sound off]'; btn.setAttribute('aria-pressed', 'true'); }
+}));
+</script>
+<footer class="footer" id="contact">
+  <span class="links"><a href="mailto:kimmic0218@gmail.com">kimmic0218@gmail.com</a>
+      <a href="https://www.linkedin.com/in/jihun-kim-4a79a1389" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="../info.html">Info</a></span>
+  <small>© 2026 Jihun Kim</small>
+</footer>
+</body>
+</html>

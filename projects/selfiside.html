@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Selfiside — Jihun Kim</title>
+<meta name="description" content="This book is inspired by the film Fight Club. It explores the film’s philosophical ideas, including its critique of capitalism, the loss of individual">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site-header">
+  <a href="../index.html">Jihun Kim</a>
+  <nav><a href="../index.html#work">Work</a><a href="../info.html">Info</a><a href="#contact">Contact</a></nav>
+</header>
+<section class="detail-head">
+  <h1>Selfiside<br><span class="view">Book Design<br>2025</span></h1>
+  <div class="desc"><p>This book is inspired by the film Fight Club. It explores the film’s philosophical ideas, including its critique of capitalism, the loss of individual identity caused by consumer culture, the chaos that follows that loss, and the idea that what is ultimately needed to reclaim one’s true self is a fundamental form of love.</p></div>
+</section>
+<div class="lead inset"><video src="../images/selfiside/book-video.mp4" muted loop playsinline autoplay preload="auto"></video></div>
+<main class="slices">
+  <img src="../images/selfiside/detail-01.jpg" width="2880" height="2200" alt="" decoding="async">
+  <img src="../images/selfiside/detail-02.jpg" width="2880" height="2200" alt="" decoding="async">
+  <img src="../images/selfiside/detail-03.jpg" width="2880" height="2200" alt="" loading="lazy" decoding="async">
+  <img src="../images/selfiside/detail-04.jpg" width="2880" height="2200" alt="" loading="lazy" decoding="async">
+  <img src="../images/selfiside/detail-05.jpg" width="2880" height="2200" alt="" loading="lazy" decoding="async">
+  <img src="../images/selfiside/detail-06.jpg" width="2880" height="2200" alt="" loading="lazy" decoding="async">
+  <img src="../images/selfiside/detail-07.jpg" width="2880" height="2200" alt="" loading="lazy" decoding="async">
+  <img src="../images/selfiside/detail-08.jpg" width="2880" height="1850" alt="" loading="lazy" decoding="async">
+</main>
+<nav class="pager">
+  <a href="ttwieo.html">← TTWIEO!</a>
+  <a href="../index.html">Index</a>
+  <a href="eidolon.html">EIDOLON →</a>
+</nav>
+<script>
+/* play overlay videos only while they're on screen */
+const vids = [...document.querySelectorAll('.overlay video, .lead video, .gvideo video')];
+const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause()), { threshold: 0.25 });
+vids.forEach(v => io.observe(v));
+/* browsers only allow sound after a click, so each video gets a toggle;
+   turning one on mutes the others */
+document.querySelectorAll('.overlay .sound, .gvideo .sound').forEach(btn => btn.addEventListener('click', () => {
+  const v = btn.parentNode.querySelector('video'), on = v.muted;
+  vids.forEach(o => { o.muted = true; });
+  document.querySelectorAll('.overlay .sound, .gvideo .sound').forEach(b => { b.textContent = '[sound on]'; b.setAttribute('aria-pressed', 'false'); });
+  if (on) { v.muted = false; v.play().catch(() => {}); btn.textContent = '[sound off]'; btn.setAttribute('aria-pressed', 'true'); }
+}));
+</script>
+<footer class="footer" id="contact">
+  <span class="links"><a href="mailto:kimmic0218@gmail.com">kimmic0218@gmail.com</a>
+      <a href="https://www.linkedin.com/in/jihun-kim-4a79a1389" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="../info.html">Info</a></span>
+  <small>© 2026 Jihun Kim</small>
+</footer>
+</body>
+</html>
