@@ -74,7 +74,7 @@
       <p>An interview book about my mom’s story as an immigrant.<br><a class="view" href="projects/the-stranger.html">[more]</a></p>
     </div>
   </article>
-  <article class="project" data-grid="images/do-you-exist/detail-video.mp4 images/do-you-exist/detail-video-2.mp4">
+  <article class="project" data-grid="images/do-you-exist/hover-1.mp4 images/do-you-exist/hover-2.mp4">
     <h2><a href="projects/do-you-exist.html">Do You Exist?</a></h2>
     <div class="meta">
       <p class="tags">Web Design<br>2026</p>
@@ -98,13 +98,17 @@
   const bg = document.querySelector('.grid-bg');
   const slots = [...bg.querySelectorAll('.slot')];
   const isVid = src => src.endsWith('.mp4');
+  /* every hover video has a first-frame still (name.poster.jpg): it is
+     preloaded with the images, so something shows the instant you hover */
+  const posterOf = src => src.replace(/\.mp4$/, '.poster.jpg');
+  const stills = {};
   /* each slot shows either an image or a looping, muted video */
   const fill = (slot, src) => {
     const img = slot.querySelector('img'), vid = slot.querySelector('video');
     if (!src) { vid.pause(); vid.hidden = true; img.hidden = true; return; }
     if (isVid(src)) {
       img.hidden = true; vid.hidden = false;
-      if (!vid.src.endsWith(src)) vid.src = src;
+      if (!vid.src.endsWith(src)) { vid.poster = posterOf(src); vid.src = src; }
       vid.currentTime = 0; vid.play().catch(() => {});
     } else {
       vid.pause(); vid.hidden = true; img.hidden = false; img.src = src;
@@ -116,7 +120,10 @@
   const layout = () => {
     if (!bg.classList.contains('fit')) { bg.style.height = ''; return; }
     const els = slots.map(sl => [...sl.children].find(x => !x.hidden)).filter(Boolean);
-    const ar = x => x.tagName === 'VIDEO' ? (x.videoWidth ? x.videoWidth / x.videoHeight : 16 / 9)
+    const still = x => stills[x.getAttribute('src')];
+    const ar = x => x.tagName === 'VIDEO'
+      ? (x.videoWidth ? x.videoWidth / x.videoHeight
+         : still(x) && still(x).naturalWidth ? still(x).naturalWidth / still(x).naturalHeight : 16 / 9)
                                           : (x.naturalWidth ? x.naturalWidth / x.naturalHeight : 1.5);
     const maxH = innerHeight * (bg.classList.contains('tall') ? 0.58 : 0.4);
     const sum = els.reduce((t, x) => t + ar(x), 0) || 1;
@@ -127,7 +134,16 @@
   addEventListener('resize', layout);
   const list = document.querySelector('.list');
   const rows = list.querySelectorAll('.project[data-grid]');
-  rows.forEach(r => r.dataset.grid.split(' ').forEach(src => { if (!isVid(src)) new Image().src = src; }));
+  rows.forEach(r => r.dataset.grid.split(' ').forEach(src => {
+    const im = new Image(); im.src = isVid(src) ? posterOf(src) : src;
+    if (isVid(src)) stills[src] = im;
+  }));
+  /* then quietly download the hover videos one after another, so they are
+     already cached by the time someone hovers */
+  const clips = [...rows].flatMap(r => r.dataset.grid.split(' ').filter(isVid));
+  addEventListener('load', () => setTimeout(async () => {
+    for (const src of clips) { try { await (await fetch(src, { priority: 'low' })).blob(); } catch (e) {} }
+  }, 1500));
   rows.forEach(r => r.addEventListener('mouseenter', () => {
     if (!document.documentElement.classList.contains('locked')) return;
     const [s1, s2] = r.dataset.grid.split(' ');
